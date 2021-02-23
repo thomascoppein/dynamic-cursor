@@ -1,0 +1,158 @@
+.cursor {
+  $root: &;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 150;
+
+  contain: layout style size;
+  pointer-events: none;
+  will-change: transform;
+
+  transition: opacity 0.3s, color 0.4s;
+
+  /* smartphones, touchscreens */
+  @media (hover: none) and (pointer: coarse) {
+    display: none;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -24px;
+    left: -24px;
+    display: block;
+    width: 48px;
+    height: 48px;
+    transform: scale(0);
+
+    background: currentColor;
+    border-radius: 50%;
+
+    transition: transform 0.3s ease-in-out, opacity 0.1s;
+  }
+
+  .cursor__text {
+    position: absolute;
+    top: -18px;
+    left: -18px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0) rotate(10deg);
+
+    opacity: 0;
+    color: white;
+
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: -0.01em;
+
+    transition: opacity 0.4s, transform 0.3s;
+  }
+
+  &.cursor--exclusion {
+    @supports (mix-blend-mode: exclusion) {
+      mix-blend-mode: exclusion;
+    }
+
+    &:before {
+      @supports (mix-blend-mode: exclusion) {
+        background: white;
+      }
+    }
+  }
+
+  &.cursor--normal {
+    mix-blend-mode: normal;
+
+    &:before {
+      background: currentColor;
+    }
+  }
+
+  &.cursor--inverse {
+    color: white;
+  }
+
+  &.cursor--visible {
+    &:before {
+      transform: scale(0.2);
+    }
+
+    &.cursor--active:before {
+      transform: scale(0.23);
+      transition-duration: 0.2s;
+    }
+  }
+
+  &.cursor--pointer {
+    &:before {
+      transform: scale(0.15);
+    }
+  }
+
+  &.cursor--opaque {
+    @extend .cursor--exclusion;
+
+    &:before {
+      transform: scale(0.3);
+    }
+
+    &.cursor--active:before {
+      transform: scale(0.33);
+      transition-duration: 0.2s;
+    }
+  }
+
+  &.cursor--text {
+    @extend .cursor--normal;
+
+    &:before {
+      opacity: 0.85;
+      transform: scale(1.7);
+    }
+
+    .cursor__text {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    &.cursor--active:before {
+      transform: scale(1.6);
+      transition-duration: 0.2s;
+    }
+  }
+
+  &.cursor--button-round {
+    &:before {
+      transform: scale(1);
+      transition-duration: 0.2s;
+    }
+
+    &.cursor--active:before {
+      transform: scale(1.2);
+      transition-duration: 0.2s;
+    }
+  }
+
+  &.cursor--lg {
+    &:before {
+      transform: scale(2);
+    }
+  }
+
+  &.cursor--hidden {
+    &:before {
+      transform: scale(0);
+    }
+  }
+}
+
+.cursor--color-white {
+  color: white;
+}

@@ -1,2 +1,3 @@
-# dynamic-cursor
-Repository for Dynamic Cursor package
+# Custom Cursor
+
+NPM package for a custom cursor
