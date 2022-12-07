@@ -3,10 +3,14 @@ import gsap from "gsap";
 export default class Cursor {
   constructor(options) {
     this.options = {
-      container: options.container || "body",
-      speed: options.speed || 0.7,
-      ease: options.ease || "expo.out",
-      visibleTimeout: options.visibleTimeout || 300,
+      container:
+        typeof options.container !== "undefined" ? options.container : "body",
+      speed: typeof options.speed !== "undefined" ? options.speed : 0.7,
+      ease: typeof options.ease !== "undefined" ? options.ease : "expo.out",
+      visibleTimeout:
+        typeof options.visibleTimeout !== "undefined"
+          ? options.visibleTimeout
+          : 300,
     };
 
     this.body = document.querySelector(this.options.container);
@@ -180,16 +184,17 @@ export default class Cursor {
     if (this.visible) return;
     clearInterval(this.visibleInt);
     this.cursorElem.classList.add("cursor--visible");
-    this.visibleInt = setTimeout(() => (this.visible = true));
+    this.visibleInt = setTimeout(() => {
+      this.visible = true;
+    });
   }
 
   hide() {
     clearInterval(this.visibleInt);
     this.cursorElem.classList.remove("cursor--visible");
-    this.visibleInt = setTimeout(
-      () => (this.visible = false),
-      this.options.visibleTimeout
-    );
+    this.visibleInt = setTimeout(() => {
+      this.visible = false;
+    }, this.options.visibleTimeout);
   }
 }
 

@@ -5,7 +5,9 @@ export default (options) => {
   // Init cursor
   const defaultOptions = {
     magneticElems:
-      options.magneticElms || document.querySelectorAll("[data-magnetic]"),
+      typeof options.magneticElms !== "undefined"
+        ? options.magneticElms
+        : document.querySelectorAll("[data-magnetic]"),
   };
   window.cursor = new Cursor(options);
 
