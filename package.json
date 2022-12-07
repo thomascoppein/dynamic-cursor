@@ -1,12 +1,13 @@
 {
   "name": "@thomascoppein/dynamic-cursor",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Dynamic Cursor Library",
   "scripts": {
     "test": "mocha --require babel-core/register",
     "build": "webpack --mode production",
     "lint": "eslint ./src",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "pub": "npm publish --access public"
   },
   "main": "./dist/index.js",
   "style": "./dist/index.css",
@@ -14,7 +15,7 @@
     "dist"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@thomascoppein"
+    "registry": "https://registry.npmjs.org/"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,7 @@
     "animation",
     "npm"
   ],
-  "author": "Thomas Coppein",
+  "author": "thomascoppein",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/thomascoppein/dynamic-cursor/issues"

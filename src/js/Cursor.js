@@ -197,5 +197,3 @@ export default class Cursor {
     }, this.options.visibleTimeout);
   }
 }
-
-module.exports.Cursor = Cursor;
